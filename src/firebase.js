@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 
 const app = initializeApp({
@@ -18,4 +19,4 @@ const app = initializeApp({
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-export { app, auth, onAuthStateChanged, provider, signInWithPopup };
+export { app, auth, onAuthStateChanged, provider, signInWithPopup, signOut };
