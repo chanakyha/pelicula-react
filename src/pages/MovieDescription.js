@@ -1,9 +1,19 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MovieDescription = () => {
+  const navigate = useNavigate();
   let params = useLocation();
-  let data = JSON.parse(params?.state?.data);
+  const [data, setData] = useState({});
+  console.log(params);
+  useEffect(() => {
+    if (!params.state) {
+      return navigate("/");
+    } else {
+      setData(JSON.parse(params?.state?.data));
+    }
+  }, []);
+
   console.log(data);
   return (
     <div>
@@ -22,9 +32,9 @@ const MovieDescription = () => {
           />
           <div>
             <h1 class="text-5xl font-bold">
-              {data.original_name || data.original_title || data.title}
+              {data?.original_name || data?.original_title || data?.title}
             </h1>
-            <p class="py-6">{data.overview}</p>
+            <p class="py-6">{data?.overview}</p>
             <div class="stats shadow">
               <div class="stat">
                 <div class="stat-figure text-primary">
@@ -43,7 +53,10 @@ const MovieDescription = () => {
                   </svg>
                 </div>
                 <div class="stat-title">Released Date</div>
-                <div class="stat-value text-primary">{data.release_date}</div>
+                <div class="stat-value text-primary">
+                  {data?.release_date || "NA"}
+                </div>
+                {data?.adult ? <div class="stat-desc">18+ Warning</div> : null}
               </div>
               <div class="stat">
                 <div class="stat-figure text-primary">
@@ -62,7 +75,9 @@ const MovieDescription = () => {
                   </svg>
                 </div>
                 <div class="stat-title">Popularity</div>
-                <div class="stat-value text-primary">{data.popularity}</div>
+                <div class="stat-value text-primary">
+                  {data?.popularity || "NA"}
+                </div>
               </div>
               <div class="stat">
                 <div class="stat-figure text-secondary">
@@ -81,7 +96,9 @@ const MovieDescription = () => {
                   </svg>
                 </div>
                 <div class="stat-title">Vote Count</div>
-                <div class="stat-value text-secondary">{data.vote_count}</div>
+                <div class="stat-value text-secondary">
+                  {data?.vote_count || "NA"}
+                </div>
               </div>
               <div class="stat">
                 <div class="stat-figure text-secondary">
@@ -100,7 +117,9 @@ const MovieDescription = () => {
                   </svg>
                 </div>
                 <div class="stat-title">Vote Average</div>
-                <div class="stat-value text-secondary">{data.vote_average}</div>
+                <div class="stat-value text-secondary">
+                  {data?.vote_average || "NA"}
+                </div>
               </div>
             </div>
             <button className="mt-5 btn btn-primary">Book Seats</button>

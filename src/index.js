@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
 import MovieDescription from "./pages/MovieDescription";
 import Navbar from "./components/Navbar";
+import SelectSeat from "./pages/SelectSeat";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +19,7 @@ root.render(
       <Route path="/" element={<Dashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/movie" element={<MovieDescription />} />
+      <Route path="/seats" element={<SelectSeat />} />
     </Routes>
   </BrowserRouter>
 );
