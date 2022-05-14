@@ -108,7 +108,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Navbar />
       <Jumbotron movies={movies} />
       <div className="">
         <MovieRow title="Trending Now" movies={trending} />

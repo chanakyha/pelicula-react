@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { signOut, auth, onAuthStateChanged } from "../firebase";
 
 const Navbar = () => {
@@ -14,7 +15,9 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1 ">
-        <a className="btn btn-ghost normal-case text-xl">Pelicula</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          Pelicula
+        </Link>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
@@ -36,23 +39,25 @@ const Navbar = () => {
               />
             </div>
           </label>
-          <ul
-            tabIndex="0"
-            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a onClick={() => signOut(auth)}>Logout</a>
-            </li>
-          </ul>
+          {userData ? (
+            <ul
+              tabIndex="0"
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a onClick={() => signOut(auth)}>Logout</a>
+              </li>
+            </ul>
+          ) : null}
         </div>
       </div>
     </div>
