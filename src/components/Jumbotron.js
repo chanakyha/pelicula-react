@@ -5,12 +5,13 @@ const Jumbotron = ({ movies }) => {
   const movie = movies
     ? movies[Math.floor(Math.random() * movies.length)]
     : null;
+  console.log(movies);
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src={
-            movies ? (
+            movie?.poster_path ? (
               "https://image.tmdb.org/t/p/original/" + movie?.poster_path
             ) : (
               <Bars
